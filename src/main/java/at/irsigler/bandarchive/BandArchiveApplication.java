@@ -1,7 +1,7 @@
 package at.irsigler.bandarchive;
 
-import at.irsigler.bandarchive.composer.Composer;
-import at.irsigler.bandarchive.composer.ComposerRepository;
+import at.irsigler.bandarchive.musician.Musician;
+import at.irsigler.bandarchive.musician.MusicianRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,25 +17,25 @@ public class BandArchiveApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(ComposerRepository repository) {
+    public CommandLineRunner demo(MusicianRepository repository) {
         return (args) -> {
             // save a few customers
-            repository.save(new Composer("Jack", "Bauer"));
-            repository.save(new Composer("Chloe", "O'Brian"));
-            repository.save(new Composer("Kim", "Bauer"));
-            repository.save(new Composer("David", "Palmer"));
-            repository.save(new Composer("Michelle", "Dessler"));
+            repository.save(new Musician("Jack", "Bauer"));
+            repository.save(new Musician("Chloe", "O'Brian"));
+            repository.save(new Musician("Kim", "Bauer"));
+            repository.save(new Musician("David", "Palmer"));
+            repository.save(new Musician("Michelle", "Dessler"));
 
             // fetch all customers
             log.info("Customers found with findAll():");
             log.info("-------------------------------");
-            for (Composer customer : repository.findAll()) {
+            for (Musician customer : repository.findAll()) {
                 log.info(customer.toString());
             }
             log.info("");
 
             // fetch an individual customer by ID
-            Composer customer = repository.findById(1L).orElseThrow(IllegalAccessException::new);
+            Musician customer = repository.findById(1L).orElseThrow(IllegalAccessException::new);
             log.info("Customer found with findById(1L):");
             log.info("--------------------------------");
             log.info(customer.toString());

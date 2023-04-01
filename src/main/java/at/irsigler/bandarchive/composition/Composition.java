@@ -1,8 +1,11 @@
 package at.irsigler.bandarchive.composition;
 
-import at.irsigler.bandarchive.composer.Composer;
+import at.irsigler.bandarchive.concert.ConcertPiece;
+import at.irsigler.bandarchive.musician.Musician;
 import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Composition")
@@ -19,11 +22,14 @@ public class Composition {
 
     @ManyToOne
     @JoinColumn(name = "composer_id")
-    private Composer composer;
+    private Musician composer;
 
     @ManyToOne
     @JoinColumn(name = "arranger_id")
-    private Composer arranger;
+    private Musician arranger;
+
+    @OneToMany(mappedBy = "composition", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ConcertPiece> programs;
 
 
     @Override

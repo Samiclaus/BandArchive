@@ -1,4 +1,4 @@
-package at.irsigler.bandarchive.composer;
+package at.irsigler.bandarchive.musician;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Composer {
+public class Musician {
 
     @Id
     @GeneratedValue
@@ -24,7 +24,7 @@ public class Composer {
 
     private String lastName;
 
-    public Composer(String firstName, String lastName) {
+    public Musician(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
